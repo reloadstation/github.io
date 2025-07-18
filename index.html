@@ -1,0 +1,202 @@
+index.html
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reload Store - Top Up Game</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    img.logo {
+      max-width: 150px;
+      margin-top: 10px;
+      animation: scaleIn 1s ease-out;
+    }
+
+    .banner img {
+      width: 100%;
+      max-width: 700px;
+      margin-top: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      animation: fadeIn 1.2s ease-in;
+    }
+
+    h1, h2 {
+      margin-top: 30px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #cbd5e1;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .cta-button {
+      margin-top: 20px;
+      background-color: #22c55e;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+      animation: fadeIn 1.3s ease-in;
+    }
+
+    .cta-button:hover {
+      background-color: #16a34a;
+      transform: scale(1.05);
+    }
+
+    .price-list {
+      margin-top: 40px;
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .price-list ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .price-list li {
+      margin: 8px 0;
+      font-size: 1.1em;
+    }
+
+    .countdown {
+      font-size: 1.5em;
+      margin: 30px 0;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    .testimonials {
+      margin-top: 40px;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .testimonial {
+      background-color: #1e293b;
+      padding: 15px;
+      margin: 10px auto;
+      border-radius: 10px;
+      max-width: 600px;
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9em;
+      color: #94a3b8;
+      animation: fadeIn 2s ease-in;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    @keyframes fadeInUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes scaleIn {
+      from {transform: scale(0.8); opacity: 0;}
+      to {transform: scale(1); opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <!-- LOGO -->
+  <img src="logo.png" alt="Logo Reload Store" class="logo">
+
+  <!-- BANNER -->
+  <div class="banner">
+    <img src="banner.jpg" alt="Promo Top Up Banner">
+  </div>
+
+  <!-- HEADLINE -->
+  <h1>TOP UP GAME MURAH & CEPAT</h1>
+  <p>Mobile Legends • Free Fire • Genshin Impact • dan lainnya</p>
+  <a class="cta-button" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20top%20up%20game" target="_blank">
+    Pesan via WhatsApp
+  </a>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown">
+    Promo Berakhir Dalam: <span id="timer">loading...</span>
+  </div>
+
+  <!-- PRICE LIST -->
+  <div class="price-list">
+    <h2>Daftar Harga</h2>
+    <ul>
+      <li>💎 MLBB 86 Diamonds - Rp 21.000</li>
+      <li>🔥 Free Fire 140 Diamonds - Rp 19.000</li>
+      <li✨ Genshin 300 Genesis Crystals - Rp 75.000</li>
+      <li>🎮 Valorant 125 Points - Rp 20.000</li>
+    </ul>
+  </div>
+
+  <!-- TESTIMONIAL -->
+  <div class="testimonials">
+    <h2>Testimoni Pelanggan</h2>
+    <div class="testimonial">
+      <p>“Top up-nya cepat banget! Gak sampai 5 menit langsung masuk. Terpercaya!”<br>- Rina, Surabaya</p>
+    </div>
+    <div class="testimonial">
+      <p>“Harga bersahabat dan adminnya ramah. Sudah langganan lama.”<br>- Fajar, Bandung</p>
+    </div>
+    <div class="testimonial">
+      <p>“Pertama kali coba dan langsung puas. Next top up di sini lagi.”<br>- Andi, Jakarta</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Reload Store. Semua hak dilindungi.</p>
+  </footer>
+
+  <!-- COUNTDOWN SCRIPT -->
+  <script>
+    const endDate = new Date("2025-07-31T23:59:59").getTime();
+    const timer = document.getElementById("timer");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = endDate - now;
+
+      if (distance < 0) {
+        timer.innerHTML = "Promo sudah berakhir";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      timer.innerHTML = `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
