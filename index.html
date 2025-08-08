@@ -1,196 +1,72 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ReloadStation - Top Up Game Cepat & Aman</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #0a0a1a, #000);
-      color: #fff;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    /* Background Partikel */
-    canvas {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -2;
-    }
-    /* Lapisan cahaya */
-    .bg-glow {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url('https://i.ibb.co/7yS0XMY/light-rays.png') repeat;
-      background-size: cover;
-      mix-blend-mode: screen;
-      opacity: 0.2;
-      animation: moveLight 10s linear infinite;
-      z-index: -1;
-    }
-    @keyframes moveLight {
-      0% { background-position: 0 0; }
-      100% { background-position: 100% 100%; }
-    }
-    .container {
-      text-align: center;
-      padding: 2rem;
-      animation: fadeIn 1.5s ease;
-    }
-    h1 {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      position: relative;
-      display: inline-block;
-      background: linear-gradient(90deg, #ffea00, #ff005d, #00c3ff, #ffea00);
-      background-size: 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glowTitle 5s linear infinite;
-    }
-    @keyframes glowTitle {
-      0% { background-position: 0%; }
-      100% { background-position: 300%; }
-    }
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      opacity: 0.9;
-      animation: fadeUp 2s ease;
-    }
-    .btn {
-      padding: 1rem 2rem;
-      margin: 0.5rem;
-      border: none;
-      border-radius: 50px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      color: white;
-      text-decoration: none;
-      box-shadow: 0 0 10px rgba(255,255,255,0.3);
-      position: relative;
-      overflow: hidden;
-    }
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: rgba(255,255,255,0.3);
-      transform: skewX(-25deg);
-      transition: 0.5s;
-    }
-    .btn:hover::before {
-      left: 100%;
-    }
-    .topup {
-      background: linear-gradient(45deg, #ff416c, #ff4b2b);
-    }
-    .topup:hover {
-      box-shadow: 0 0 20px #ff4b2b;
-    }
-    .wa {
-      background: linear-gradient(45deg, #25d366, #128c7e);
-    }
-    .wa:hover {
-      box-shadow: 0 0 20px #25d366;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    footer {
-      position: absolute;
-      bottom: 10px;
-      width: 100%;
-      text-align: center;
-      font-size: 0.8rem;
-      color: #aaa;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReloadStation - Top Up Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            background: linear-gradient(135deg, #1e1e2f, #2b2b40);
+            overflow: hidden;
+        }
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: url('https://i.pinimg.com/originals/9d/f5/31/9df53167bdfec2416aafc734c11a8cc5.gif') no-repeat center;
+            background-size: cover;
+            opacity: 0.15;
+            animation: zoom 20s infinite alternate;
+        }
+        @keyframes zoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .container {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 2.5rem;
+        }
+        .btn {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 25px;
+            font-size: 1.2rem;
+            color: white;
+            background: #ff5733;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #ff784e;
+        }
+    </style>
 </head>
 <body>
-  <canvas id="particles"></canvas>
-  <div class="bg-glow"></div>
-
-  <div class="container">
-    <h1>ReloadStation</h1>
-    <p>Top Up Game Favorit Kamu Dengan Cepat, Aman, & Terpercaya!</p>
-    <a href="https://reloadstation.id/topup" class="btn topup">Top Up Sekarang</a>
-    <a href="https://wa.me/6281234567890" class="btn wa" target="_blank">Chat WhatsApp</a>
-  </div>
-
-  <footer>
-    &copy; 2025 ReloadStation. All rights reserved.
-  </footer>
-
-  <script>
-    // Efek Partikel
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    let particlesArray;
-
-    // Buat partikel
-    function init() {
-      particlesArray = [];
-      for (let i = 0; i < 100; i++) {
-        let size = Math.random() * 3 + 1;
-        let x = Math.random() * canvas.width;
-        let y = Math.random() * canvas.height;
-        let speedX = (Math.random() * 0.4) - 0.2;
-        let speedY = (Math.random() * 0.4) - 0.2;
-        particlesArray.push({x, y, size, speedX, speedY});
-      }
-    }
-
-    function drawParticles(p) {
-      ctx.fillStyle = "#ffffff";
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.closePath();
-      ctx.fill();
-    }
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particlesArray.forEach(p => {
-        p.x += p.speedX;
-        p.y += p.speedY;
-
-        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
-        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
-
-        drawParticles(p);
-      });
-      requestAnimationFrame(animateParticles);
-    }
-
-    init();
-    animateParticles();
-
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      i
+    <div class="bg-animation"></div>
+    <div class="container">
+        <img src="https://github.com/reloadstation/github.io/raw/main/Logo%20png%20(1).png" alt="ReloadStation Logo" class="logo">
+        <h1>Selamat Datang di ReloadStation</h1>
+        <p>Tempat Top Up Game Termurah & Terpercaya</p>
+        <a href="https://reloadstation.id" class="btn">Top Up Sekarang</a>
+        <a href="https://wa.me/6287857744127" class="btn" style="background: #25D366;">Hubungi via WhatsApp</a>
+    </div>
+</body>
+</html>
