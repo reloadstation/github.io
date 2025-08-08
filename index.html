@@ -1,202 +1,108 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Reload Store - Top Up Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReloadStation - Top Up Game Cepat & Aman</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0f172a;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      overflow-x: hidden;
-    }
-
-    img.logo {
-      max-width: 150px;
-      margin-top: 10px;
-      animation: scaleIn 1s ease-out;
-    }
-
-    .banner img {
-      width: 100%;
-      max-width: 700px;
-      margin-top: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      animation: fadeIn 1.2s ease-in;
-    }
-
-    h1, h2 {
-      margin-top: 30px;
-      animation: fadeInUp 1s ease-out;
-    }
-
-    p {
-      font-size: 1.1em;
-      color: #cbd5e1;
-      animation: fadeInUp 1.2s ease-out;
-    }
-
-    .cta-button {
-      margin-top: 20px;
-      background-color: #22c55e;
-      color: white;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      border-radius: 12px;
-      text-decoration: none;
-      transition: transform 0.3s ease, background-color 0.3s ease;
-      animation: fadeIn 1.3s ease-in;
-    }
-
-    .cta-button:hover {
-      background-color: #16a34a;
-      transform: scale(1.05);
-    }
-
-    .price-list {
-      margin-top: 40px;
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 12px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .price-list ul {
-      list-style: none;
       padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
     }
-
-    .price-list li {
-      margin: 8px 0;
-      font-size: 1.1em;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: #fff;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-
-    .countdown {
-      font-size: 1.5em;
-      margin: 30px 0;
-      animation: fadeIn 1.5s ease-in;
+    .container {
+      text-align: center;
+      padding: 2rem;
+      animation: fadeIn 1.5s ease;
     }
-
-    .testimonials {
-      margin-top: 40px;
-      animation: fadeInUp 1.2s ease-out;
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
-
-    .testimonial {
-      background-color: #1e293b;
-      padding: 15px;
-      margin: 10px auto;
-      border-radius: 10px;
-      max-width: 600px;
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
     }
-
-    footer {
-      margin-top: 50px;
-      font-size: 0.9em;
-      color: #94a3b8;
-      animation: fadeIn 2s ease-in;
+    .btn {
+      padding: 1rem 2rem;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
-
-    /* Animations */
+    .topup {
+      background-color: #ff416c;
+      color: white;
+    }
+    .topup:hover {
+      background-color: #ff4b2b;
+    }
+    .wa {
+      background-color: #25d366;
+      color: white;
+    }
+    .wa:hover {
+      background-color: #1ebc58;
+    }
+    .bg-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://media.giphy.com/media/3ohs7KViFOT5sJfZHa/giphy.gif') no-repeat center center/cover;
+      opacity: 0.1;
+      z-index: -1;
+      animation: zoom 10s infinite linear;
+    }
     @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-
-    @keyframes fadeInUp {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+    @keyframes zoom {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
-
-    @keyframes scaleIn {
-      from {transform: scale(0.8); opacity: 0;}
-      to {transform: scale(1); opacity: 1;}
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
-  <!-- LOGO -->
-  <img src="logo.png" alt="Logo Reload Store" class="logo">
+  <div class="bg-animation"></div>
+  <div class="container">
+    <div class="promo-image-container">
+  <img src="https://reloadstation.id/assets/banner-topup.jpg" alt="Promo Top Up" class="promo-image">
+</div>
 
-  <!-- BANNER -->
-  <div class="banner">
-    <img src="banner.jpg" alt="Promo Top Up Banner">
+    <h1>ReloadStation</h1>
+    <p>Top Up Game Favorit Kamu Dengan Cepat, Aman, & Terpercaya!</p>
+    <a href="https://reloadstation.id/topup" class="btn topup">Top Up Sekarang</a>
+    <a href="https://wa.me/6281234567890" class="btn wa" target="_blank">Chat WhatsApp</a>
   </div>
-
-  <!-- HEADLINE -->
-  <h1>TOP UP GAME MURAH & CEPAT</h1>
-  <p>Mobile Legends • Free Fire • Genshin Impact • dan lainnya</p>
-  <a class="cta-button" href="https://wa.me/6281234567890?text=Halo%20saya%20mau%20top%20up%20game" target="_blank">
-    Pesan via WhatsApp
-  </a>
-
-  <!-- COUNTDOWN -->
-  <div class="countdown">
-    Promo Berakhir Dalam: <span id="timer">loading...</span>
-  </div>
-
-  <!-- PRICE LIST -->
-  <div class="price-list">
-    <h2>Daftar Harga</h2>
-    <ul>
-      <li>💎 MLBB 86 Diamonds - Rp 21.000</li>
-      <li>🔥 Free Fire 140 Diamonds - Rp 19.000</li>
-      <li✨ Genshin 300 Genesis Crystals - Rp 75.000</li>
-      <li>🎮 Valorant 125 Points - Rp 20.000</li>
-    </ul>
-  </div>
-
-  <!-- TESTIMONIAL -->
-  <div class="testimonials">
-    <h2>Testimoni Pelanggan</h2>
-    <div class="testimonial">
-      <p>“Top up-nya cepat banget! Gak sampai 5 menit langsung masuk. Terpercaya!”<br>- Rina, Surabaya</p>
-    </div>
-    <div class="testimonial">
-      <p>“Harga bersahabat dan adminnya ramah. Sudah langganan lama.”<br>- Fajar, Bandung</p>
-    </div>
-    <div class="testimonial">
-      <p>“Pertama kali coba dan langsung puas. Next top up di sini lagi.”<br>- Andi, Jakarta</p>
-    </div>
-  </div>
-
-  <!-- FOOTER -->
   <footer>
-    <p>© 2025 Reload Store. Semua hak dilindungi.</p>
+    &copy; 2025 ReloadStation. All rights reserved.
   </footer>
-
-  <!-- COUNTDOWN SCRIPT -->
-  <script>
-    const endDate = new Date("2025-07-31T23:59:59").getTime();
-    const timer = document.getElementById("timer");
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = endDate - now;
-
-      if (distance < 0) {
-        timer.innerHTML = "Promo sudah berakhir";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      timer.innerHTML = `${days} Hari ${hours} Jam ${minutes} Menit ${seconds} Detik`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-  </script>
 </body>
 </html>
