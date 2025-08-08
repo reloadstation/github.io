@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ReloadStation - Top Up Game Cepat & Aman</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -14,7 +14,7 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      background: radial-gradient(circle at top, #0a0a1a, #000);
       color: #fff;
       height: 100vh;
       overflow: hidden;
@@ -22,19 +22,55 @@
       align-items: center;
       justify-content: center;
     }
+    /* Background Partikel */
+    canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+    }
+    /* Lapisan cahaya */
+    .bg-glow {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('https://i.ibb.co/7yS0XMY/light-rays.png') repeat;
+      background-size: cover;
+      mix-blend-mode: screen;
+      opacity: 0.2;
+      animation: moveLight 10s linear infinite;
+      z-index: -1;
+    }
+    @keyframes moveLight {
+      0% { background-position: 0 0; }
+      100% { background-position: 100% 100%; }
+    }
     .container {
       text-align: center;
       padding: 2rem;
       animation: fadeIn 1.5s ease;
     }
     h1 {
-      font-size: 2.5rem;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 3rem;
       margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+      background: linear-gradient(90deg, #ffea00, #ff005d, #00c3ff, #ffea00);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: glowTitle 5s linear infinite;
+    }
+    @keyframes glowTitle {
+      0% { background-position: 0%; }
+      100% { background-position: 300%; }
     }
     p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
       opacity: 0.9;
+      animation: fadeUp 2s ease;
     }
     .btn {
       padding: 1rem 2rem;
@@ -44,40 +80,43 @@
       font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.3);
+      transform: skewX(-25deg);
+      transition: 0.5s;
+    }
+    .btn:hover::before {
+      left: 100%;
     }
     .topup {
-      background-color: #ff416c;
-      color: white;
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
     }
     .topup:hover {
-      background-color: #ff4b2b;
+      box-shadow: 0 0 20px #ff4b2b;
     }
     .wa {
-      background-color: #25d366;
-      color: white;
+      background: linear-gradient(45deg, #25d366, #128c7e);
     }
     .wa:hover {
-      background-color: #1ebc58;
-    }
-    .bg-animation {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('https://media.giphy.com/media/3ohs7KViFOT5sJfZHa/giphy.gif') no-repeat center center/cover;
-      opacity: 0.1;
-      z-index: -1;
-      animation: zoom 10s infinite linear;
+      box-shadow: 0 0 20px #25d366;
     }
     @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes zoom {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
     }
     footer {
       position: absolute;
@@ -90,19 +129,68 @@
   </style>
 </head>
 <body>
-  <div class="bg-animation"></div>
-  <div class="container">
-    <div class="promo-image-container">
-  <img src="https://github.com/reloadstation/github.io/blob/main/Logo%20png%20(1).png">
-</div>
+  <canvas id="particles"></canvas>
+  <div class="bg-glow"></div>
 
+  <div class="container">
     <h1>ReloadStation</h1>
     <p>Top Up Game Favorit Kamu Dengan Cepat, Aman, & Terpercaya!</p>
     <a href="https://reloadstation.id/topup" class="btn topup">Top Up Sekarang</a>
     <a href="https://wa.me/6281234567890" class="btn wa" target="_blank">Chat WhatsApp</a>
   </div>
+
   <footer>
     &copy; 2025 ReloadStation. All rights reserved.
   </footer>
-</body>
-</html>
+
+  <script>
+    // Efek Partikel
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let particlesArray;
+
+    // Buat partikel
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 100; i++) {
+        let size = Math.random() * 3 + 1;
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let speedX = (Math.random() * 0.4) - 0.2;
+        let speedY = (Math.random() * 0.4) - 0.2;
+        particlesArray.push({x, y, size, speedX, speedY});
+      }
+    }
+
+    function drawParticles(p) {
+      ctx.fillStyle = "#ffffff";
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particlesArray.forEach(p => {
+        p.x += p.speedX;
+        p.y += p.speedY;
+
+        if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
+
+        drawParticles(p);
+      });
+      requestAnimationFrame(animateParticles);
+    }
+
+    init();
+    animateParticles();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      i
