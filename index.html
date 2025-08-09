@@ -79,12 +79,16 @@
           }
     .instagram {
   background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+  background-size: 400% 400%;
+  animation: igGradient 6s ease infinite;
   color: white;
   box-shadow: 0 0 15px #dd2a7b;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .instagram:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 25px #f58529, 0 0 50px #dd2a7b;
+  box-shadow: 0 0 25px #f58529, 0 0 50px #dd2a7b, 0 0 75px #8134af;
 }
 
 .facebook {
@@ -105,6 +109,11 @@
       font-size: 0.8rem;
       color: #aaa;
     }
+    @keyframes igGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
