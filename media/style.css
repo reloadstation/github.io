@@ -136,11 +136,12 @@
     transform: translateY(-50%);
 }
 
-/* Untuk semua layar */
 .popup img {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
+  width: auto;
+  height: auto;
+  max-height: 80vh;
+  max-width: 600px; /* Desktop akan mentok di 600px */
+  border-radius: 10px;
 }
 
 .close-btn {
