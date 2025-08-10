@@ -93,48 +93,6 @@
   transform: scale(1.1);
   box-shadow: 0 0 25px #1877f2, 0 0 50px #0d4db3;
 }
-    .popup-content {
-    background: white;
-    border-radius: 10px;
-    position: relative;
-    width: 80%; /* Lebar popup di layar HP */
-    aspect-ratio: 4 / 5; /* Proporsi 4:5 */
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-.popup-content img {
-    width: 100%;
-    height: auto;
-    flex: 0 0 auto;
-  }
- .popup-body a {
-    display: inline-block;
-    padding: 10px 15px;
-    background: #ff4b2b;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-  }
-.popup-close {
-    position: absolute;
-    top: 8px; right: 10px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    background: rgba(0,0,0,0.5);
-    border-radius: 50%;
-    width: 28px; height: 28px;
-    text-align: center;
-    line-height: 28px;
-    cursor: pointer;
-  }
-  /* Khusus mobile */
-  @media (min-width: 768px) {
-    .popup-content {
-      width: 400px; /* Batas max di desktop */
-    }
       
     footer {
       position: absolute;
@@ -158,7 +116,4 @@
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-  @keyframes popupFade {
-    from { transform: scale(0.8); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-  }
+
