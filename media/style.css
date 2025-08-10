@@ -136,11 +136,11 @@
     transform: translateY(-50%);
 }
 
+/* Untuk semua layar */
 .popup img {
-    display: block;
     width: 100%;
     height: auto;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .close-btn {
@@ -164,10 +164,11 @@
     }
 }
 
-/* Ukuran untuk desktop */
+/* Khusus desktop */
 @media (min-width: 768px) {
-    .popup {
-        width: 300px;
+    .popup img {
+        max-width: 500px;   /* batas lebar */
+        max-height: 80vh;   /* batas tinggi */
     }
 }
 
